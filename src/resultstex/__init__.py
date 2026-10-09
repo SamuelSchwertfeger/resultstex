@@ -2,7 +2,6 @@
 
 import argparse
 import datetime
-import inspect
 import json
 import os
 import pathlib
@@ -43,7 +42,7 @@ def record(
     text = format(value, fmt) if fmt else str(value)
     if unit:
         text += unit if unit == '%' else f' {unit}'
-    script = pathlib.Path(inspect.stack()[1].filename).absolute().as_posix()
+    script = pathlib.Path(sys._getframe(1).f_code.co_filename).absolute().as_posix()  # pyright: ignore[reportPrivateUsage]
     data: dict[str, Any] = {}
     if pathlib.Path(path).exists():
         with pathlib.Path(path).open(encoding='utf-8') as f:
