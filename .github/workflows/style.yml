@@ -1,0 +1,35 @@
+name: style
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+jobs:
+  ruff-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+
+      - name: Ruff format (check only)
+        run: uvx ruff format --check .
+
+      - name: Ruff lint
+        run: uvx ruff check .
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Type check
+        run: uv run basedpyright
