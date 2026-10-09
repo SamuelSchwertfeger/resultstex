@@ -57,7 +57,7 @@ The `example/` folder holds a complete run.
    resultstex audit paper.tex [--results results.json] [--strict]
    ```
 
-   It exits 1 if a `\result{key}` is missing from `results.json`. Numbers typed directly into the text are printed as warnings; with `--strict` they also cause exit 1. Files pulled in with `\input` or `\include` are checked too.
+   It exits 1 if a `\result{key}` is missing from `results.json`. Numbers typed directly into the text are printed as warnings (see Limitations for what the check can see); with `--strict` they also cause exit 1. Files pulled in with `\input` or `\include` are checked too.
 
 ### Hard-coded numbers that are fine
 
@@ -76,6 +76,7 @@ Run `resultstex build` locally and upload or commit the new `results.tex` whenev
 ## Limitations
 
 - Numbers are found with regular expressions, not a LaTeX parser. The audit can miss hard-coded numbers and can flag numbers that are not results. Four-digit years are skipped unless followed by words like "samples".
+- Whole numbers below 100 are never flagged ("20 features", "10 folds", "5 seeds"), and neither are numbers written with exponents such as `10^{-3}`. Only decimals, percentages, comma-grouped numbers and whole numbers of three or more digits are checked.
 - `\input` and `\include` are followed only when the file name is a plain literal.
 - `results.json` is read and rewritten on every `record()` call; it is not safe for several processes writing the same file at once.
 - Values are formatted when recorded, so changing a format means re-running the analysis.
