@@ -4,11 +4,11 @@ Keep every number in a LaTeX paper generated from code. Analysis scripts record 
 
 ## Install
 
-resultstex is not on PyPI yet. It needs Python 3.10 or newer and has no runtime dependencies. Install from the git URL (the repository is private, so you need access to it):
+```
+pip install resultstex
+```
 
-```
-uv pip install "resultstex @ git+https://github.com/SamuelSchwertfeger/resultstex"
-```
+It needs Python 3.10 or newer and has no runtime dependencies. The LaTeX side is one file, `latex/resultstex.sty`, which you copy from this repository (see "Using the .sty" below); pip does not install it.
 
 For development:
 
