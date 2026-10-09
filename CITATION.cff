@@ -8,5 +8,6 @@ authors:
     affiliation: Augusta University
 version: 0.1.0
 date-released: "2026-10-09"
+doi: 10.5281/zenodo.23271713
 license: MIT
 repository-code: "https://github.com/SamuelSchwertfeger/resultstex"
