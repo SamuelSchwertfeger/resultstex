@@ -51,7 +51,7 @@ def test_hardcoded(tmp_path: Path) -> None:
         '\\vspace{-2.5em}\n'
         '\\end{document}\n'
     )
-    missing, hard = r.audit(str(tex), str(tmp_path / 'none.json'))
+    _, hard = r.audit(str(tex), str(tmp_path / 'none.json'))
     assert [ln for ln, _ in hard] == [5, 6, 7]
     assert r.main(['audit', str(tex)]) == 0
     assert r.main(['audit', str(tex), '--strict']) == 1

@@ -31,3 +31,6 @@ pythonVersion = "3.10"
 # Values are arbitrary by design (any JSON-serialisable result), so Any is expected.
 reportAny = false
 reportExplicitAny = false
+# Style-only rules: write_text()/add_argument() return values are never needed, and adjacent string literals are used for multi-line test data.
+reportUnusedCallResult = false
+reportImplicitStringConcatenation = false
