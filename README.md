@@ -1,5 +1,7 @@
 # resultstex
 
+[![PyPI](https://img.shields.io/pypi/v/resultstex)](https://pypi.org/project/resultstex/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23271713.svg)](https://doi.org/10.5281/zenodo.23271713)
+
 Keep every number in a LaTeX paper generated from code. Analysis scripts record values with `record()`, a build step turns them into LaTeX macros, and an audit command flags missing keys and numbers typed by hand.
 
 ## Install
