@@ -1,0 +1,31 @@
+name: publish
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  pypi:
+    name: build and upload to PyPI
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10.2.0
+
+      - name: Check that the tag matches the version
+        run: test "v$(uv version --short)" = "$GITHUB_REF_NAME"
+
+      - name: Build
+        run: uv build
+
+      - name: Upload (Trusted Publishing, no token)
+        run: uv publish
